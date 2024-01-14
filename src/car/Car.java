@@ -1,5 +1,7 @@
 package car;
 
+import user.User;
+
 public class Car {
     private static Integer idInitializer = 80;
     private Integer id;
