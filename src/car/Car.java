@@ -8,20 +8,18 @@ public class Car {
     private static Integer idInitializer = 80;
     private Integer id;
     private String brand;
-    private Double price;
+    private String model;
     private EngineType engineType;
 
     private boolean isBooked;
 
     private User user;
 
-    public Car(Integer id, String brand, Double price, EngineType engineType, boolean isBooked, User user) {
+    public Car(String brand, String model, EngineType engineType) {
         this.id = idInitializer;
         this.brand = brand;
-        this.price = price;
+        this.model = model;
         this.engineType = engineType;
-        this.isBooked = isBooked;
-        this.user = user;
         idInitializer++;
     }
 
@@ -49,12 +47,12 @@ public class Car {
         this.brand = brand;
     }
 
-    public Double getPrice() {
-        return price;
+    public String getModel() {
+        return model;
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
+    public void setModel(String model) {
+        this.model = model;
     }
 
     public EngineType getEngineType() {
@@ -81,17 +79,18 @@ public class Car {
         this.user = user;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Car car = (Car) o;
-        return isBooked == car.isBooked && Objects.equals(id, car.id) && Objects.equals(brand, car.brand) && Objects.equals(price, car.price) && engineType == car.engineType && Objects.equals(user, car.user);
+        return isBooked == car.isBooked && Objects.equals(id, car.id) && Objects.equals(brand, car.brand) && Objects.equals(model, car.model) && engineType == car.engineType && Objects.equals(user, car.user);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, brand, price, engineType, isBooked, user);
+        return Objects.hash(id, brand, model, engineType, isBooked, user);
     }
 
     @Override
@@ -99,7 +98,7 @@ public class Car {
         return "Car{" +
                 "id=" + id +
                 ", brand='" + brand + '\'' +
-                ", price=" + price +
+                ", model='" + model + '\'' +
                 ", engineType=" + engineType +
                 ", isBooked=" + isBooked +
                 ", user=" + user +
