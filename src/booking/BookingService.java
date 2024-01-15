@@ -4,12 +4,12 @@ import car.*;
 import user.*;
 
 public class BookingService {
-    private CarDAO carDAO;
-    private UserDAO userDAO;
+    private final CarDAO carDAO;
+    private final UserDAO userDAO;
 
-    private User[] users;
+    private final User[] users;
 
-    private Car[] cars;
+    private final Car[] cars;
 
     public BookingService(CarDAO carDAO, UserDAO userDAO) {
         this.carDAO = carDAO;
@@ -17,4 +17,11 @@ public class BookingService {
         this.users = userDAO.getUsers();
         this.cars = carDAO.getCars();
     }
+
+    public void viewAllCars(){
+        for (Car car: cars){
+            System.out.println(car);
+        }
+    }
+
 }

@@ -1,9 +1,16 @@
+import booking.BookingService;
+import car.CarDAO;
+import user.UserDAO;
+
 import java.util.Scanner;
 
 public class Main {
     public static final Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
-
+        CarDAO carDAO = new CarDAO();
+        UserDAO userDAO = new UserDAO();
+        BookingService bookingService = new BookingService(carDAO, userDAO);
+        menuService(bookingService);
     }
 
     public static void menu(){
@@ -16,46 +23,51 @@ public class Main {
         System.out.println("7️⃣ - Exit");
     }
 
-    private static void menuService(){
+    private static void menuService(BookingService bookingService){
         boolean isTrue = true;
         menu();
         System.out.println("Pick one option from the menu");
         int choice = scanner.nextInt();
-        switch (choice){
-            case 1 ->{
-                System.out.println("Booking a car");
-                System.out.println();
-            }
-            case 2 ->{
-                System.out.println("Here are all the vehicles you have booked: ");
-                System.out.println();
-            }
-            case 3 ->{
-                System.out.println("All bookings: ");
-                System.out.println();
-            }
+        while (isTrue) {
+            menu();
+            System.out.println("Pick one option from the menu");
+            choice = scanner.nextInt();
+            switch (choice) {
+                case 1 -> {
+                    System.out.println("Booking a car");
+                    System.out.println();
+                }
+                case 2 -> {
+                    System.out.println("Here are all the vehicles you have booked: ");
+                    System.out.println();
+                }
+                case 3 -> {
+                    System.out.println("All bookings: ");
+                    System.out.println();
+                }
 
-            case 4 -> {
-                System.out.println("Available cars: ");
-                System.out.println();
-            }
-            case 5 -> {
-                System.out.println("Available electric cars: ");
-                System.out.println();
-            }
-            case 6->{
-                System.out.println("All users: ");
-                System.out.println();
-            }
+                case 4 -> {
+                    System.out.println("Available cars: ");
+                    bookingService.viewAllCars();
+                }
+                case 5 -> {
+                    System.out.println("Available electric cars: ");
+                    System.out.println();
+                }
+                case 6 -> {
+                    System.out.println("All users: ");
+                    System.out.println();
+                }
 
-            case 7 ->{
-                isTrue = false;
-                System.out.println("Thank you.");
+                case 7 -> {
+                    isTrue = false;
+                    System.out.println("Thank you.");
+                }
+
+                default -> System.out.println("Insert a valid number.");
+
+
             }
-
-            default -> System.out.println("Insert a valid number.");
-
-
         }
     }
 }
