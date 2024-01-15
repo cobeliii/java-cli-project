@@ -3,7 +3,7 @@ package car;
 import static car.EngineType.*;
 import static car.EngineType.Electric;
 
-public class CarDAO {
+public class CarDAO implements CarDAOInterface{
     private static final Car[] cars;
 
     static {
@@ -14,7 +14,13 @@ public class CarDAO {
         };
     }
 
-    public static Car[] getCars() {
+    @Override
+    public Car[] getCars() {
         return cars;
     }
+
+
+//    public static Car[] getCars() {
+//        return cars;
+//    }
 }

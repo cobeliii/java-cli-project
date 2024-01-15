@@ -1,6 +1,6 @@
 package user;
 
-public class UserDAO {
+public class UserDAO implements UserDAOInterface{
     private static final User[] users;
 
     static {
@@ -12,7 +12,13 @@ public class UserDAO {
         };
     }
 
-    public static User[] getUsers() {
+    @Override
+    public User[] getUsers() {
         return users;
     }
+
+
+//    public static User[] getUsers() {
+//        return users;
+//    }
 }
