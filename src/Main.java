@@ -35,6 +35,7 @@ public class Main {
             switch (choice) {
                 case 1 -> {
                     System.out.println("Booking a car");
+
                     System.out.println();
                 }
                 case 2 -> {
@@ -52,10 +53,12 @@ public class Main {
                 }
                 case 5 -> {
                     System.out.println("Available electric cars: ");
+                    bookingService.viewElectricCars();
                     System.out.println();
                 }
                 case 6 -> {
                     System.out.println("All users: ");
+                    bookingService.viewAllUsers();
                     System.out.println();
                 }
 
