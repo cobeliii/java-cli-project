@@ -1,19 +1,21 @@
 package user;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class UserDAO implements UserDAOInterface{
-    private static final User[] users;
+    private static final List<User> users;
 
     static {
-        users = new User[]{
-                new User("John Doe"),
-                new User("Jamila"),
-                new User("Peter"),
-                new User("Claudia"),
-        };
+        users = new ArrayList<>();
+                users.add(new User("John Doe"));
+                users.add(new User("Jamila"));
+                users.add(new User("Peter"));
+                users.add(new User("Claudia"));
     }
 
     @Override
-    public User[] getUsers() {
+    public List<User> getUsers() {
         return users;
     }
 

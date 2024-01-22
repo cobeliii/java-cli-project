@@ -8,7 +8,7 @@ public class User {
 
     public User(String name) {
         this.name = name;
-        id++;
+        ++id;
     }
 
     public static Integer getId() {
@@ -39,9 +39,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "name='" + name + '\'' +
+                "name='" + name + '\'' + ", id= " + id +
                 '}';
     }
-
-
 }

@@ -1,6 +1,10 @@
 import booking.BookingService;
+import car.Car;
 import car.CarDAO;
+import car.CarService;
+import user.User;
 import user.UserDAO;
+import user.UserService;
 
 import java.util.Scanner;
 
@@ -9,8 +13,11 @@ public class Main {
     public static void main(String[] args) {
         CarDAO carDAO = new CarDAO();
         UserDAO userDAO = new UserDAO();
-        BookingService bookingService = new BookingService(carDAO, userDAO);
-        menuService(bookingService);
+        CarService carService = new CarService(carDAO);
+        UserService userService = new UserService(userDAO);
+        BookingService bookingService = new BookingService(carService, userService);
+        menuService(bookingService,carService);
+
     }
 
     public static void menu(){
@@ -23,11 +30,9 @@ public class Main {
         System.out.println("7️⃣ - Exit");
     }
 
-    private static void menuService(BookingService bookingService){
+    private static void menuService(BookingService bookingService, CarService carService){
         boolean isTrue = true;
-        menu();
-        System.out.println("Pick one option from the menu");
-        int choice = scanner.nextInt();
+        int choice;
         while (isTrue) {
             menu();
             System.out.println("Pick one option from the menu");
@@ -35,7 +40,7 @@ public class Main {
             switch (choice) {
                 case 1 -> {
                     System.out.println("Booking a car");
-
+                    bookingService.bookCar();
                     System.out.println();
                 }
                 case 2 -> {
@@ -44,6 +49,7 @@ public class Main {
                 }
                 case 3 -> {
                     System.out.println("All bookings: ");
+                    bookingService.viewAllBookings();
                     System.out.println();
                 }
 

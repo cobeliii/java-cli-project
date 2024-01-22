@@ -3,6 +3,7 @@ package booking;
 import car.*;
 import user.*;
 
+import java.util.Optional;
 import java.util.Scanner;
 
 import static car.EngineType.Electric;
@@ -10,51 +11,50 @@ import static car.EngineType.Electric;
 public class BookingService {
 
     private static final Scanner scanner = new Scanner(System.in);
-    private final CarDAO carDAO;
-    private final UserDAO userDAO;
+    private static final Scanner scanner1 = new Scanner(System.in);
+    private static final CarDAO carDAO = new CarDAO();
+    private static final UserDAO userDAO = new UserDAO();
 
-    private final User[] users;
 
-    private final Car[] cars;
+    private final CarService carService;
 
-    public BookingService(CarDAO carDAO, UserDAO userDAO) {
-        this.carDAO = carDAO;
-        this.userDAO = userDAO;
-        this.users = userDAO.getUsers();
-        this.cars = carDAO.getCars();
+    private final UserService userService;
+
+    public BookingService(CarService carService, UserService userService) {
+        this.carService = new CarService(carDAO);
+        this.userService = new UserService(userDAO);
+    }
+    public void viewAllUsers(){
+        userService.viewAllUsers();
     }
 
     public void viewAllCars(){
-        for (Car car: cars){
-            System.out.println(car);
-        }
-    }
-
-    public void viewAllUsers(){
-        for (User user : users) {
-            System.out.println(user);
-        }
+        carService.viewAllCars();
     }
 
     public void viewElectricCars(){
-        for (Car car : cars) {
-            if (car.getEngineType().equals(Electric)){
-                System.out.println(car);
-            }
-        }
+        carService.viewElectricCars();
     }
 
     public void bookCar(){
         viewAllCars();
         System.out.print("Enter the id of the car you want to book: ");
         int id = scanner.nextInt();
-        System.out.println("Enter user: ");
-        String username = scanner.nextLine();
-        for (User user: users){
-            if (user.getName().equals(username)){
-                
-            }
+        Car car = carService.getCar(id);
+        System.out.print("Enter name: ");
+        String name = scanner1.nextLine();
+        User user = userService.getUser(name);
+        if(user != null){
+            car.setUser(user);
+            car.setBooked(true);
+            System.out.println("Booking is successful1");
+        }else{
+            System.out.println("Invalid name");
         }
+    }
+
+    public void viewAllBookings(){
+        carService.viewAllBookings();
     }
 
 }

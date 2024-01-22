@@ -5,8 +5,8 @@ import user.User;
 import java.util.Objects;
 
 public class Car {
-    private static Integer idInitializer = 80;
-    private Integer id;
+    private static int idInitializer = 80;
+    private int id;
     private String brand;
     private String model;
     private EngineType engineType;
